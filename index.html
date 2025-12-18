@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SUHANI | FOREVER JOURNEY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050608;
+      --card: #111318;
+      --accent1: #00e5ff;
+      --accent2: #b829ff;
+      --text-main: #f7f7f7;
+      --text-muted: #b0b0b0;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at top left, #111318, #050608 45%);
+      color: var(--text-main);
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 6, 8, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      color: var(--accent1);
+      text-transform: uppercase;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    nav li a:hover {
+      color: var(--accent1);
+    }
+
+    /* Layout helpers */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 56px 16px;
+    }
+    .section h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .section p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-inner {
+      max-width: 640px;
+    }
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8);
+      opacity: 0.96;
+    }
+    .hero-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Cards generic */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .about-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent1);
+      margin-bottom: 8px;
+    }
+    .about-list {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .about-list li {
+      margin-left: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Journey steps */
+    .steps {
+      margin-top: 18px;
+      border-left: 2px solid rgba(255, 255, 255, 0.08);
+      padding-left: 14px;
+    }
+    .step {
+      margin-bottom: 14px;
+    }
+    .step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--accent1);
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--card);
+      border-radius: 12px;
+      margin-top: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .faq-q {
+      padding: 12px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-a {
+      padding: 0 14px 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: none;
+    }
+    .faq-item.open .faq-a {
+      display: block;
+    }
+
+    /* Contact / form */
+    .contact-card {
+      max-width: 480px;
+      margin-top: 18px;
+    }
+    .field {
+      margin-bottom: 10px;
+    }
+    .field label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #090b10;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+    }
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.3);
+    }
+    .contact-footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 18px 12px 26px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 30px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 720px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-title {
+        font-size: 26px;
+      }
+      nav ul {
+        gap: 10px;
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">SUHANI | FOREVER JOURNEY</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#why">Why Forever</a></li>
+          <li><a href="#journey">Journey</a></li>
+          <li><a href="#stories">Stories</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="section hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Start Your Forever Journey with Suhani</h1>
+      <p class="hero-sub">
+        Ready to turn a few focused hours each day into a long‑term income stream with Forever Living Products?
+        Suhani mentors you step‑by‑step with honest guidance and clear systems.
+      </p>
+      <button class="btn-primary" id="heroBtn">Start Journey With Me</button>
+      <p class="hero-note">Just exploring? Scroll down and see what’s possible.</p>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <span class="about-tag">About Suhani</span>
+    <h2>Who is Suhani?</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          Suhani is a young Forever Business Owner from India, helping students, homemakers and working
+          professionals build a part‑time income that can grow into a long‑term asset. She focuses on ethical
+          selling, real product education and a supportive team environment.
+        </p>
+      </div>
+      <div>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">
+          What you get when you work with her:
+        </p>
+        <ul class="about-list">
+          <li>1:1 mentorship and clear action plans.</li>
+          <li>Online training sessions you can follow from home.</li>
+          <li>A growth‑focused, non‑toxic community.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Forever -->
+  <section id="why" class="section">
+    <h2>Why Forever & Why This Business?</h2>
+    <p>
+      A simple model backed by a global aloe vera brand, designed for people who want flexible hours and
+      real products they can stand behind.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Global Aloe Brand</h3>
+        <p>Forever is known worldwide for aloe‑based wellness products, giving you strong product credibility.</p>
+      </div>
+      <div class="card">
+        <h3>Low Investment</h3>
+        <p>Start lean with minimum risk and scale as your confidence and network grow.</p>
+      </div>
+      <div class="card">
+        <h3>Work From Anywhere</h3>
+        <p>Build your business from home or on the go using just your phone and internet.</p>
+      </div>
+      <div class="card">
+        <h3>Training & Events</h3>
+        <p>Access regular trainings, product education and team events to keep you learning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey -->
+  <section id="journey" class="section">
+    <h2>How Your Journey with Suhani Works</h2>
+    <p>
+      No fake promises. Just a clear, realistic path that matches your time and goals.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">Step 1 – Free WhatsApp Call</div>
+        <p>Talk about your situation, time availability and income goals.</p>
+      </div>
+      <div class="step">
+        <div class="step-title">Step 2 – Plan & Products</div>
+        <p>Get guidance on suitable products and a simple business plan you can follow.</p>
+      </div>
+      <div class="step">
+        <div class="step-title">Step 3 – Training & Support</div>
+        <p>Follow online sessions, content ideas and daily support from Suhani and the team.</p>
+      </div>
+      <div class="step">
+        <div class="step-title">Step 4 – Grow Your Team</div>
+        <p>Gradually build your network and create a stable, scalable income stream.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories -->
+  <section id="stories" class="section">
+    <h2>Real Growth Stories</h2>
+    <p>
+      A quick look at the kind of people Suhani works with and how their lives started to shift.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Homemaker</h3>
+        <p>
+          Started with a few hours a day while managing home, now runs a calm, consistent wellness business
+          from her living room.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Student</h3>
+        <p>
+          Learned to use social media the right way, built a part‑time income during college and now mentors
+          her own small team.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Working Professional</h3>
+        <p>
+          Added an extra income stream without leaving her job, using evenings and weekends more intentionally.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Do I need sales experience?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        No. Suhani starts with basics and helps you learn how to talk about products in a simple, honest way.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Can I do this part‑time?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        Yes. Most people begin with 1‑3 hours a day alongside studies, job or home responsibilities.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>How much do I need to invest?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        Suhani explains the basic starter options on a call so you can decide what feels comfortable for you.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Is training provided?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        Yes. You get product education, business trainings and ongoing WhatsApp support.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span>Can I work from any city?</span>
+        <span>+</span>
+      </div>
+      <div class="faq-a">
+        As long as you have internet and WhatsApp, you can build your Forever business from anywhere in India.
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2>Ready to Start Your Forever Journey?</h2>
+    <p>Share your details and Suhani will connect with you on WhatsApp within 24 hours.</p>
+
+    <div class="card contact-card">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your full name" />
+      </div>
+      <div class="field">
+        <label for="whatsapp">WhatsApp Number</label>
+        <input id="whatsapp" type="text" placeholder="With country code, e.g. 91..." />
+      </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" type="text" placeholder="Your city" />
+      </div>
+      <div class="field">
+        <label for="category">You are a...</label>
+        <select id="category">
+          <option value="">Select category</option>
+          <option>Student</option>
+          <option>Homemaker</option>
+          <option>Working Professional</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button class="btn-primary" id="startJourneyBtn" style="margin-top:8px;width:100%;">
+        Start Journey With Me
+      </button>
+      <p class="contact-footer">
+        Your details are shared only with Suhani so she can guide you personally on WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 SUHANI | FOREVER JOURNEY. All rights reserved.
+  </footer>
+
+  <script>
+    // Smooth scroll from hero button to contact section
+    document.getElementById("heroBtn").addEventListener("click", function () {
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      item.querySelector(".faq-q").addEventListener("click", () => {
+        item.classList.toggle("open");
+      });
+    });
+
+    // WhatsApp integration
+    document.getElementById("startJourneyBtn").addEventListener("click", function () {
+      const name = document.getElementById("name").value.trim();
+      const whatsapp = document.getElementById("whatsapp").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const category = document.getElementById("category").value.trim();
+
+      let msg =
+        "Hi Suhani, I saw your Forever business website and want to start my journey.%0A%0A";
+      msg += "Name: " + (name || "—") + "%0A";
+      msg += "WhatsApp: " + (whatsapp || "—") + "%0A";
+      msg += "City: " + (city || "—") + "%0A";
+      msg += "Category: " + (category || "—");
+
+      const url = "https://wa.me/919942206255?text=" + msg;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
